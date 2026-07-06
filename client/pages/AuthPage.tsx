@@ -38,15 +38,27 @@ const AuthPage: React.FC<AuthPageProps> = ({ initialMode = 'login' }) => {
   }, [mode]);
 
   useEffect(() => {
-    /* global google */
-    if (window.google) {
+    let cancelled = false;
+
+    const initializeGoogleButton = () => {
+      /* global google */
+      if (cancelled || !window.google) {
+        return false;
+      }
+
+      const container = document.getElementById("googleSignInDiv");
+      if (!container) {
+        return false;
+      }
+
       window.google.accounts.id.initialize({
-        client_id: process.env.GOOGLE_CLIENT_ID || "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
+        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
         callback: handleGoogleResponse
       });
 
+      container.innerHTML = "";
       window.google.accounts.id.renderButton(
-        document.getElementById("googleSignInDiv"),
+        container,
         {
           theme: "outline",
           size: "large",
@@ -56,7 +68,26 @@ const AuthPage: React.FC<AuthPageProps> = ({ initialMode = 'login' }) => {
           locale: navigator.language
         }
       );
+
+      return true;
+    };
+
+    if (!initializeGoogleButton()) {
+      const intervalId = window.setInterval(() => {
+        if (initializeGoogleButton()) {
+          window.clearInterval(intervalId);
+        }
+      }, 200);
+
+      return () => {
+        cancelled = true;
+        window.clearInterval(intervalId);
+      };
     }
+
+    return () => {
+      cancelled = true;
+    };
   }, [mode]);
 
   const handleGoogleResponse = async (response: any) => {

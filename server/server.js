@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
+import "./src/config/env.js";
 import app from "./app.js";
 import { initializeJWTSecret } from "./src/utils/jwtGenerator.js";
 
-dotenv.config();
 initializeJWTSecret();
 
 const port=process.env.PORT;

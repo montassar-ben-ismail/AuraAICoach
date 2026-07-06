@@ -1,9 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import dotenv from "dotenv"
 import Repas from "../models/Repas.js"
 import Pack from "../models/Pack.js"
-
-dotenv.config();
 
 export const getMacro = async (req, res) => {
   try {

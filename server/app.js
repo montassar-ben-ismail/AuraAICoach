@@ -21,6 +21,7 @@ import payment from "./src/routes/create-payment-intent.routes.js"
 
 const app = express();
 
+//CORS pour le client local
 app.use(cors({
     origin: ["http://localhost:3000", "http://localhost:5173", "http://localhost:5174"],
     credentials: true,

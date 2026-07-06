@@ -61,11 +61,22 @@ export interface ParsedMeal {
   };
 }
 
+export interface WorkoutExercise {
+  name: string;
+  muscle: string;
+  angle: string;
+  type: string;
+  category: string;
+  sets: string;
+  reps: string;
+  rest: string;
+}
+
 export interface WorkoutPlan {
   status: string;
   typeSplit: string;
   planWeek: {
-    [key: string]: string[] | string; // "day1": ["Ex1", "Ex2"] or "day1": "repos"
+    [key: string]: WorkoutExercise[] | string; // "day1": [{...}] or "day1": "repos"
   };
 }
 

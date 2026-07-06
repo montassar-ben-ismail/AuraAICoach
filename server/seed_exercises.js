@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import './src/config/env.js';
 import ExercicesAdmin from './src/models/ExercicesAdmin.js';
-
-dotenv.config();
 
 const exercises = [
   // Chest
