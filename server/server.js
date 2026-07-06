@@ -11,4 +11,4 @@ mongoose.connect(process.env.MONGO_URL).then(()=>{
     app.listen(port,()=>{
         console.log(`Server runnig in port ${port}`);
     });
-}).catch((err)=>console.log(err));
+}).catch((err)=>console.error(err));
