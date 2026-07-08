@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import './src/config/env.js';
-import ExercicesAdmin from './src/models/ExercicesAdmin.js';
+import '../src/config/env.js';
+import ExercicesAdmin from '../src/models/ExercicesAdmin.js';
 
 const exercises = [
   // Chest

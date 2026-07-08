@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import './src/config/env.js';
+import '../src/config/env.js';
 import bcrypt from 'bcryptjs';
-import User from './src/models/User.js';
+import User from '../src/models/User.js';
 
 const seedAdmin = async () => {
     try {
