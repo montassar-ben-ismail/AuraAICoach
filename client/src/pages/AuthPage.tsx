@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/Input';
-import { api } from '../services/api';
+import { useAuth } from '@/context/AuthContext';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+import { api } from '@/services/api';
 import { Activity, ShieldCheck, Mail, Lock, User as UserIcon, ArrowRight, Eye, EyeOff } from 'lucide-react';
-import { navigate } from '../utils/navigation';
+import { navigate } from '@/utils/navigation';
 
 interface AuthPageProps {
   initialMode?: 'login' | 'signup';
@@ -46,13 +46,19 @@ const AuthPage: React.FC<AuthPageProps> = ({ initialMode = 'login' }) => {
         return false;
       }
 
+      const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+      if (!googleClientId) {
+        setError('Google authentication is not configured.');
+        return false;
+      }
+
       const container = document.getElementById("googleSignInDiv");
       if (!container) {
         return false;
       }
 
       window.google.accounts.id.initialize({
-        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
+        client_id: googleClientId,
         callback: handleGoogleResponse
       });
 

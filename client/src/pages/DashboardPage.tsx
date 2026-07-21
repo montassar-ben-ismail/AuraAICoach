@@ -4,13 +4,13 @@ import {
   AreaChart, Area
 } from 'recharts';
 import { Activity, Flame, Utensils, Zap, Send, TrendingUp, CheckCircle2 } from 'lucide-react';
-import { api } from '../services/api';
-import { UserProfile, WorkoutPlan, DailyStat } from '../types';
-import { navigate } from '../utils/navigation';
+import { api } from '@/services/api';
+import { UserProfile, WorkoutPlan, DailyStat } from '@/types';
+import { navigate } from '@/utils/navigation';
 import { Lock, Crown } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
-import { Button } from '../components/ui/Button';
-import { Toast, ToastType } from '../components/ui/Toast';
+import { useAuth } from '@/context/AuthContext';
+import { Button } from '@/components/ui/Button';
+import { Toast, ToastType } from '@/components/ui/Toast';
 
 const DashboardPage = () => {
   const { user: authUser } = useAuth();

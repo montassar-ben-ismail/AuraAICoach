@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/Input';
-import { api } from '../services/api';
-import { PhysicalMetrics } from '../types';
-import { Modal } from '../components/ui/Modal';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+import { api } from '@/services/api';
+import { PhysicalMetrics } from '@/types';
+import { Modal } from '@/components/ui/Modal';
 import { AlertTriangle, Calendar } from 'lucide-react';
-import { navigate } from '../utils/navigation';
+import { navigate } from '@/utils/navigation';
 
 const OnboardingPage = () => {
   const [step, setStep] = useState(1);

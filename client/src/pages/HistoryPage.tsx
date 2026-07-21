@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { api } from '../services/api';
-import { MealLog } from '../types';
+import { api } from '@/services/api';
+import { MealLog } from '@/types';
 import { Utensils, Calendar, Search, Filter, ChevronRight, Crown, Lock } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
-import { Button } from '../components/ui/Button';
-import { navigate } from '../utils/navigation';
+import { useAuth } from '@/context/AuthContext';
+import { Button } from '@/components/ui/Button';
+import { navigate } from '@/utils/navigation';
 
 const HistoryPage = () => {
     const { user } = useAuth();

@@ -8,9 +8,17 @@ interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
 
-import { User, AuthResponse, PhysicalMetrics, UserProfile, WorkoutPlan, DailyStat, ParsedMeal, MealLog } from '../types';
+import { User, AuthResponse, PhysicalMetrics, UserProfile, WorkoutPlan, DailyStat, ParsedMeal, MealLog } from '@/types';
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+// Détecte si on est en production (build) ou développement
+const isProduction:boolean = import.meta.env.PROD;
+
+// En prod, utilise l'IP du serveur. En dev, localhost
+const BASE_URL:string = isProduction
+  ? `http://${window.location.hostname}:3001`  // IP automatique !
+  : (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3001');
+
+
 
 const headers = () => {
   const token = localStorage.getItem('aura_token');

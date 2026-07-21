@@ -8,10 +8,10 @@ import {
 } from '@stripe/react-stripe-js';
 import { StripeCardElement } from '@stripe/stripe-js';
 import { ShieldCheck, Zap, Star, CheckCircle2, Loader2, Lock, Clock, Calendar } from 'lucide-react';
-import { Button } from '../components/ui/Button';
-import { api } from '../services/api';
-import { navigate } from '../utils/navigation';
-import { useAuth } from '../context/AuthContext';
+import { Button } from '@/components/ui/Button';
+import { api } from '@/services/api';
+import { navigate } from '@/utils/navigation';
+import { useAuth } from '@/context/AuthContext';
 
 const stripePromise = loadStripe('pk_test_51THODIDbu5um8X68mIlGGVpbeLmIgzpeg2Xpj0UeL8BIjbiMPnxEfpsdsxecmY2Z7T9kJQjmseWcAlmURGrCkdQB002JBb9i8D');
 

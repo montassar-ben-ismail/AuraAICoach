@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import { Layout } from './components/Layout';
-import LandingPage from './pages/LandingPage';
-import AuthPage from './pages/AuthPage';
-import OnboardingPage from './pages/OnboardingPage';
-import DashboardPage from './pages/DashboardPage';
-import PlanPage from './pages/PlanPage';
-import ProfilePage from './pages/ProfilePage';
-import HistoryPage from './pages/HistoryPage';
-import AdminDashboard from './pages/AdminDashboard';
-import MembershipPage from './pages/MembershipPage';
+import { AuthProvider, useAuth } from '@/context/AuthContext';
+import { Layout } from '@/components/Layout';
+import LandingPage from '@/pages/LandingPage';
+import AuthPage from '@/pages/AuthPage';
+import OnboardingPage from '@/pages/OnboardingPage';
+import DashboardPage from '@/pages/DashboardPage';
+import PlanPage from '@/pages/PlanPage';
+import ProfilePage from '@/pages/ProfilePage';
+import HistoryPage from '@/pages/HistoryPage';
+import AdminDashboard from '@/pages/AdminDashboard';
+import MembershipPage from '@/pages/MembershipPage';
 
 const Router = () => {
   const [route, setRoute] = useState(window.location.pathname || '/');

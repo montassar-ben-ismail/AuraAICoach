@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { api } from '../services/api';
-import { UserProfile, PhysicalMetrics } from '../types';
-import { useAuth } from '../context/AuthContext';
-import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/Input';
+import { api } from '@/services/api';
+import { UserProfile, PhysicalMetrics } from '@/types';
+import { useAuth } from '@/context/AuthContext';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
 import { User as UserIcon, Settings, CreditCard, ChevronRight, Lock, Download, HelpCircle, AlertTriangle, Calendar } from 'lucide-react';
-import { Modal } from '../components/ui/Modal';
-import { navigate } from '../utils/navigation';
+import { Modal } from '@/components/ui/Modal';
+import { navigate } from '@/utils/navigation';
 
 const ProfilePage = () => {
   const { user } = useAuth();

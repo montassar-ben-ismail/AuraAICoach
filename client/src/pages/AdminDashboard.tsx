@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { api } from '../services/api';
-import { User } from '../types';
-import { Button } from '../components/ui/Button';
+import { api } from '@/services/api';
+import { User } from '@/types';
+import { Button } from '@/components/ui/Button';
 import {
     UserCheck, UserX, Users, ShieldAlert, Search,
     RefreshCw, UserPlus, Settings, Lock, CheckCircle2, AlertCircle,
     Eye, EyeOff
 } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
-import { Toast, ToastType } from '../components/ui/Toast';
-import { navigate } from '../utils/navigation';
+import { useAuth } from '@/context/AuthContext';
+import { Toast, ToastType } from '@/components/ui/Toast';
+import { navigate } from '@/utils/navigation';
 
 const AdminDashboard = () => {
     const { user: authUser } = useAuth();

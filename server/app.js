@@ -23,13 +23,15 @@ const app = express();
 
 
 //convertir la chain en tab
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || "")
+const rawOrigins = (process.env.ALLOWED_ORIGINS || "")
     .split(",")
     .map(origin => origin.trim())
     .filter(Boolean);
+// mode wildcard : si "*" est présent, on reflete l'origine du demandeur
+const allowAll = rawOrigins.includes("*");
 //CORS pour le client local
 app.use(cors({
-    origin: allowedOrigins,
+    origin: allowAll ? true : rawOrigins,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]

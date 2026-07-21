@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { api } from '../services/api';
-import { WorkoutPlan } from '../types';
-import { Button } from '../components/ui/Button';
+import { api } from '@/services/api';
+import { WorkoutPlan } from '@/types';
+import { Button } from '@/components/ui/Button';
 import { Dumbbell, RotateCcw, Calendar, RefreshCcw } from 'lucide-react';
-import { Modal } from '../components/ui/Modal';
-import { navigate } from '../utils/navigation';
+import { Modal } from '@/components/ui/Modal';
+import { navigate } from '@/utils/navigation';
 
 const PlanPage = () => {
   const [plan, setPlan] = useState<WorkoutPlan | null>(null);

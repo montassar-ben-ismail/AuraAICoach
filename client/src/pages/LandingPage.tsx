@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from '../components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { Activity, Zap, Shield, ChevronRight, Check, Crown } from 'lucide-react';
-import { navigate } from '../utils/navigation';
+import { navigate } from '@/utils/navigation';
 
 const LandingPage = () => {
   return (
