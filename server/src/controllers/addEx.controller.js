@@ -3,7 +3,6 @@
 import ExercicesAdmin from "../models/ExercicesAdmin.js"
 import User from "../models/User.js"
 
-//il faut prendre id user et verifier s'il s'agit d'un admin ou nn
 export const addEx=async(req,res)=>{
     const userId=req.user.id
     let user=await User.findById(userId)
