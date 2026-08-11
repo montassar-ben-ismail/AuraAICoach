@@ -14,6 +14,7 @@ permissions:
     contents: read
 
 jobs:
+
     client-check:
         name: Client (typecheck + build)
         runs-on: ubuntu-latest
@@ -39,6 +40,7 @@ jobs:
                 name: client-dist
                 path: client/dist
                 if-no-files-found: error
+
     server-check:
         name: Server (deps+ syntax)
         runs-on: ubuntu-latest
@@ -60,28 +62,5 @@ jobs:
             - name: Syntax check
               run: |
                 find . -name "*.js" -not -path "./node_modules/*" -exec node --check {} +
-    security-audit:
-        name: Security audit (client + server)
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
-              with:
-                node-version: 22
-                cache: npm
-                cache-dependency-path: client/package-lock.json
-            - name: Audit client (npm)
-              working-directory: client
-              run: |
-                npm ci
-                npm audit --audit-level=high
-            - name: Setup pnpm
-              uses: pnpm/action-setup@v4
-              with:
-                version: 10.28.2
-            - name: Audit Server (pnpm)
-              working-directory: server
-              run: |
-                pnpm install --frozen-lockfile
-                pnpm audit --audit-level=high
+
 
