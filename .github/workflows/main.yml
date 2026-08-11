@@ -47,14 +47,12 @@ jobs:
                 working-directory: server
         steps:
             - uses: actions/checkout@v4
-            - uses: pnpm/actions-setup@v4
+            - uses: pnpm/action-setup@v4
             - uses: actions/setup-node@v4
               with:
                 node-version: 22
                 cache: pnpm
                 cache-dependency-path: server/pnpm-lock.yaml
-            - name: Enable pnpm (corepack)
-              run: corepack enable
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
             - name: Syntax check
@@ -80,7 +78,6 @@ jobs:
             - name: Audit Server (pnpm)
               working-directory: server
               run: |
-                corepack enable
                 pnpm install --frozen-lockfile
                 pnpm audit --audit-level=high
 
