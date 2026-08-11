@@ -47,6 +47,7 @@ jobs:
                 working-directory: server
         steps:
             - uses: actions/checkout@v4
+            - uses: pnpm/actions-setup@v4
             - uses: actions/setup-node@v4
               with:
                 node-version: 22
@@ -74,6 +75,8 @@ jobs:
               run: |
                 npm ci
                 npm audit --audit-level=high
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
             - name: Audit Server (pnpm)
               working-directory: server
               run: |
