@@ -1,0 +1,83 @@
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+concurrency:
+    group: ci-${{ github.workflow}}-${{ github.ref}}
+    cancel-in-progress: true
+
+permissions:
+    contents: read
+
+jobs:
+    client-check:
+        name: Client (typecheck + build)
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: client
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 20
+                cache: npm
+                cache-dependency-path: client/package-lock.json
+            - name: Install dependencies
+              run: npm ci
+            - name: Typecheck
+              run: npx tsc --noEmit
+            - name: Build
+              run: npm run build
+            - name: Upload dist artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: client-dist
+                path: client/dist
+                if-no-files-found: error
+    server-check:
+        name: Server (deps+ syntax)
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: server
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 20
+                cache: pnpm
+                cache-dependency-path: server/pnpm-lock.yaml
+            - name: Enable pnpm (corepack)
+              run: corepack enable
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+            - name: Syntax check
+              run: |
+                find . -name "*.js" -not -path "./node_modules/*" -exec node --check {} +
+    security-audit:
+        name: Security audit (client + server)
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 20
+                cache: npm
+                cache-dependency-path: client/package-lock.json
+            - name: Audit client (npm)
+              working-directory: client
+              run: |
+                npm ci
+                npm audit --audit-level=high
+            - name: Audit Server (pnpm)
+              working-directory: server
+              run: |
+                corepack enable
+                pnpm install --frozen-lockfile
+                pnpm audit --audit-level=high
+
