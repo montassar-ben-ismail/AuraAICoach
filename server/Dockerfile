@@ -1,7 +1,7 @@
 #dockerfile
 FROM node:20-alpine
 #activer pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@10.28.2 --activate
 WORKDIR /app
 #copier les fichiers de dépendances
 COPY package.json pnpm-lock.yaml ./
